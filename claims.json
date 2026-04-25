@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Global warming is driving polar bears toward extinction",
+    "label": "SUPPORTED"
+  },
+  {
+    "claim": "The sun has gone into ‘lockdown’ which could cause freezing weather, earthquakes and famine, say scientists",
+    "label": "SUPPORTED"
+  },
+  {
+    "claim": "The polar bear population has been growing.",
+    "label": "REFUTED"
+  },
+  {
+    "claim": "Ironic' study finds more CO2 has slightly cooled the planet",
+    "label": "REFUTED"
+  },
+  {
+    "claim": "Human additions of CO2 are in the margin of error of current measurements and the gradual increase in CO2 is mainly from oceans degassing as the planet slowly emerges from the last ice age.",
+    "label": "REFUTED"
+  },
+  {
+    "claim": "They tell us that we are the primary forces controlling earth temperatures by the burning of fossil fuels and releasing their carbon dioxide.",
+    "label": "SUPPORTED"
+  },
+  {
+    "claim": "The Great Barrier Reef is experiencing the most widespread bleaching ever recorded",
+    "label": "SUPPORTED"
+  },
+  {
+    "claim": "it’s not a pollutant that threatens human civilization.",
+    "label": "REFUTED"
+  },
+  {
+    "claim": "If CO2 was so terrible for the planet, then installing a CO2 generator in a greenhouse would kill the plants.",
+    "label": "REFUTED"
+  },
+  {
+    "claim": "Earth about to enter 30-YEAR ‘Mini Ice Age’",
+    "label": "INSUFFICIENT_EVIDENCE"
+  },
+  {
+    "claim": "Volcanoes Melting West Antarctic Glaciers, Not Global Warming",
+    "label": "SUPPORTED"
+  },
+  {
+    "claim": "the bushfires [in Australia] were caused by arsonists and a series of lightning strikes, not 'climate change'",
+    "label": "INSUFFICIENT_EVIDENCE"
+  },
+  {
+    "claim": "When the exact same group of 'experts' who claimed it was global cooling in 1977 now claim it's global warming you can easily see why I am skeptical",
+    "label": "INSUFFICIENT_EVIDENCE"
+  },
+  {
+    "claim": "[NASA] has been adjusting temperatures from the past[...]",
+    "label": "INSUFFICIENT_EVIDENCE"
+  },
+  {
+    "claim": "Fifty-five thousand years ago the whole world was 2°C warmer than it is today[...]",
+    "label": "INSUFFICIENT_EVIDENCE"
+  }
+]
