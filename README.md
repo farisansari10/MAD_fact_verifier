@@ -2,6 +2,8 @@
 
 A production-grade fact verification system powered by Multi-Agent Debate (MAD) using four heterogeneous LLMs that independently research, debate, and verify news claims in real time.
 
+Built as a Final Semester Project for the Agentic AI course at FAST-NUCES, grounded in eight peer-reviewed papers on multi-agent debate frameworks.
+
 ---
 
 ## 🧠 How It Works
@@ -34,59 +36,14 @@ SUPPORTED / REFUTED / INSUFFICIENT_EVIDENCE
 
 ## 🤖 Agent Design
 
-```mermaid
-flowchart TD
+| Agent | Model | Tool | Role |
+|-------|-------|------|------|
+| Agent 1 | `openai/gpt-4o-mini` | DuckDuckGo Web Search | Finds latest web evidence |
+| Agent 2 | `x-ai/grok-4-fast` | Wikipedia API | Provides background context |
+| Agent 3 | `google/gemini-2.5-flash` | None | Pure logical reasoning |
+| Judge | `anthropic/claude-sonnet-4-5` | Full debate transcript | Final verdict |
 
-    A[News Claim Input]
-
-    A --> B[Independent Research]
-
-    B --> C1["Agent 1<br/>GPT-4o-mini<br/>Live Web Search"]
-    B --> C2["Agent 2<br/>Grok 4 Fast<br/>Wikipedia Retrieval"]
-    B --> C3["Agent 3<br/>Gemini 2.5<br/>Pure Reasoning"]
-
-    C1 --> D[Confidence Gate<br/>DOWN Framework - Eo et al.]
-    C2 --> D
-    C3 --> D
-
-    D -->|All Agree & Confidence > 80%| G[Judge<br/>Claude Sonnet]
-
-    D -->|Disagreement or Low Confidence| E[Debate Round 1]
-    E --> F[Debate Round 2]
-    F --> G
-
-    G --> H{Final Verdict}
-
-    H --> I[✅ SUPPORTED]
-    H --> J[❌ REFUTED]
-    H --> K[⚠️ INSUFFICIENT EVIDENCE]
-```
-
-Architecture Overview
-1. Independent Research Phase
-  - Three agents investigate the claim using different models and evidence sources.
-  - Diversity reduces single-model bias and improves robustness.
-2. Confidence Gate
-  - Uses the DOWN framework (Eo et al.) to assess agreement and confidence.
-  - If all agents agree with high confidence (>80%), the system bypasses debate.
-3. Multi-Agent Debate
-  - Triggered when agents disagree or confidence is low.
-  - Agents challenge each other's evidence and reasoning for up to two rounds.
-4. Judge Evaluation
- - Claude Sonnet reviews all research outputs and debate transcripts.
- - Produces the final fact-checking decision.
-5. Verdict Categories
- - SUPPORTED — Evidence strongly supports the claim.
- - REFUTED — Evidence contradicts the claim.
- - INSUFFICIENT_EVIDENCE — Available evidence is inconclusive.
-
-Key Benefits
-- Multi-source verification
-- Cross-model reasoning
-- Structured disagreement resolution
-- Reduced hallucinations
-- Transparent decision-making process
-- Evidence-backed final verdicts
+> All four agents use different model families (OpenAI, xAI, Google, Anthropic) — a deliberate design choice based on Zhou et al. A-HMAD which shows heterogeneous agents produce higher quality debates than identical ones. The judge being from a different family than all debaters reduces adjudication bias as warned by Liang et al.
 
 ---
 
@@ -219,8 +176,8 @@ CONFIDENCE_THRESHOLD = 0.80
 ## 👤 Author
 
 **Faris Ansari**
-MS Computer Science (FAST)
-faris.ansari10@gmail.com
+FAST-NUCES, MS-CS
+i257813@isb.nu.edu.pk
 
 ---
 
