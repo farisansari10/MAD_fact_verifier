@@ -36,57 +36,33 @@ SUPPORTED / REFUTED / INSUFFICIENT_EVIDENCE
 
 ## 🤖 Agent Design
 
-┌───────────────────────────────────────────────┐
-│               News Claim Input                │
-└───────────────────────────────────────────────┘
-                        │
-                        ▼
-┌───────────────────────────────────────────────┐
-│              Independent Research             │
-├───────────────────────────────────────────────┤
-│ Agent 1 │ GPT-4o-mini │ Live Web Search       │
-│ Agent 2 │ Grok 4 Fast │ Wikipedia Retrieval   │
-│ Agent 3 │ Gemini 2.5  │ Pure Reasoning        │
-└───────────────────────────────────────────────┘
-                        │
-                        ▼
-┌───────────────────────────────────────────────┐
-│               Confidence Gate                 │
-│          (DOWN Framework - Eo et al.)         │
-└───────────────────────────────────────────────┘
-                        │
-        ┌───────────────┴───────────────┐
-        │                               │
-        ▼                               ▼
- All Agents Agree                 Disagreement /
- Confidence > 80%                 Low Confidence
-        │                               │
-        │                               ▼
-        │                  ┌─────────────────────┐
-        │                  │   Debate Round 1    │
-        │                  └─────────────────────┘
-        │                               │
-        │                               ▼
-        │                  ┌─────────────────────┐
-        │                  │   Debate Round 2    │
-        │                  └─────────────────────┘
-        │                               │
-        └───────────────┬───────────────┘
-                        ▼
-┌───────────────────────────────────────────────┐
-│                    Judge                      │
-│                Claude Sonnet                  │
-│   Reviews Research + Full Debate Transcript   │
-└───────────────────────────────────────────────┘
-                        │
-                        ▼
-┌───────────────────────────────────────────────┐
-│                Final Verdict                  │
-├───────────────────────────────────────────────┤
-│ ✅ SUPPORTED                                  │
-│ ❌ REFUTED                                    │
-│ ⚠️ INSUFFICIENT_EVIDENCE                      │
-└───────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+
+    A[News Claim Input]
+
+    A --> B[Independent Research]
+
+    B --> C1["Agent 1<br/>GPT-4o-mini<br/>Live Web Search"]
+    B --> C2["Agent 2<br/>Grok 4 Fast<br/>Wikipedia Retrieval"]
+    B --> C3["Agent 3<br/>Gemini 2.5<br/>Pure Reasoning"]
+
+    C1 --> D[Confidence Gate<br/>DOWN Framework - Eo et al.]
+    C2 --> D
+    C3 --> D
+
+    D -->|All Agree & Confidence > 80%| G[Judge<br/>Claude Sonnet]
+
+    D -->|Disagreement or Low Confidence| E[Debate Round 1]
+    E --> F[Debate Round 2]
+    F --> G
+
+    G --> H{Final Verdict}
+
+    H --> I[✅ SUPPORTED]
+    H --> J[❌ REFUTED]
+    H --> K[⚠️ INSUFFICIENT EVIDENCE]
+```
 
 Architecture Overview
 1. Independent Research Phase
