@@ -8,29 +8,35 @@ Built as a Final Semester Project for the Agentic AI course at FAST-NUCES, groun
 
 ## 🧠 How It Works
 
-Three agents independently research a news claim using different tools and models. A confidence gate decides whether debate is needed. If agents disagree, they argue for up to 2 rounds. A judge reads the full debate and delivers the final verdict.
-News Claim Input
-│
-▼
-┌─────────────────────────────────────────────────────┐
-│  Agent 1 │ GPT-4o-mini    │ Live Web Search          │
-│  Agent 2 │ Grok 4 Fast    │ Wikipedia                │
-│  Agent 3 │ Gemini 2.5     │ Pure Reasoning (no tools)│
-└─────────────────────────────────────────────────────┘
-│
-▼
-Confidence Gate (DOWN paper — Eo et al.)
-├── All agree + confidence > 80% → Skip to Judge
-└── Disagreement or low confidence → Debate Rounds
-│
-▼
-Debate Round 1 → Debate Round 2
-│
-▼
-Judge │ Claude Sonnet │ Reads full transcript
-│
-▼
-SUPPORTED / REFUTED / INSUFFICIENT_EVIDENCE
+## 🤖 Agent Design
+
+```mermaid
+flowchart TD
+
+    A[News Claim Input]
+
+    A --> B[Independent Research]
+
+    B --> C1["Agent 1<br/>GPT-4o-mini<br/>Live Web Search"]
+    B --> C2["Agent 2<br/>Grok 4 Fast<br/>Wikipedia Retrieval"]
+    B --> C3["Agent 3<br/>Gemini 2.5<br/>Pure Reasoning"]
+
+    C1 --> D[Confidence Gate<br/>DOWN Framework - Eo et al.]
+    C2 --> D
+    C3 --> D
+
+    D -->|All Agree & Confidence > 80%| G[Judge<br/>Claude Sonnet]
+
+    D -->|Disagreement or Low Confidence| E[Debate Round 1]
+    E --> F[Debate Round 2]
+    F --> G
+
+    G --> H{Final Verdict}
+
+    H --> I[✅ SUPPORTED]
+    H --> J[❌ REFUTED]
+    H --> K[⚠️ INSUFFICIENT EVIDENCE]
+```
 
 ---
 
