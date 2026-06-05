@@ -50,18 +50,43 @@ flowchart TD
 ---
 
 ## 📂 Project Structure
+
+```text
 mad-fact-verifier/
-├── config.py           # All model names and settings in one place
-├── tools.py            # Web search (DuckDuckGo) and Wikipedia functions
-├── llm_caller.py       # OpenRouter API communication for all agents
-├── debate_graph.py     # LangGraph debate workflow — core of the system
-├── load_fever.py       # Downloads claims from climate_fever benchmark
-├── evaluate.py         # Runs evaluation and prints accuracy metrics
-├── main.py             # Interactive terminal interface
-├── claims.json         # Test claims from climate_fever benchmark
-├── evaluation_results.json  # Evaluation output for IEEE paper
-├── .env.example        # API key template
+│
+├── config.py
+│   └── Centralized model configuration and system settings
+│
+├── tools.py
+│   └── Web search and Wikipedia retrieval utilities
+│
+├── llm_caller.py
+│   └── OpenRouter API integration for all agents
+│
+├── debate_graph.py
+│   └── Multi-agent debate workflow (LangGraph)
+│
+├── load_fever.py
+│   └── Downloads claims from the Climate-FEVER benchmark
+│
+├── evaluate.py
+│   └── Evaluation pipeline and accuracy metrics
+│
+├── main.py
+│   └── Interactive CLI for fact-checking claims
+│
+├── claims.json
+│   └── Benchmark claims dataset
+│
+├── evaluation_results.json
+│   └── Evaluation results used in experiments
+│
+├── .env.example
+│   └── Environment variable template
+│
 └── README.md
+    └── Project documentation
+```
 
 ---
 
