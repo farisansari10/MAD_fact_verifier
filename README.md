@@ -8,8 +8,6 @@ Built as a Final Semester Project for the Agentic AI course at FAST-NUCES, groun
 
 ## 🧠 How It Works
 
-## 🤖 Agent Design
-
 ```mermaid
 flowchart TD
 
