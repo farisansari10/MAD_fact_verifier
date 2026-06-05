@@ -2,8 +2,6 @@
 
 A production-grade fact verification system powered by Multi-Agent Debate (MAD) using four heterogeneous LLMs that independently research, debate, and verify news claims in real time.
 
-Built as a Final Semester Project for the Agentic AI course at FAST-NUCES, grounded in eight peer-reviewed papers on multi-agent debate frameworks.
-
 ---
 
 ## 🧠 How It Works
@@ -181,7 +179,7 @@ CONFIDENCE_THRESHOLD = 0.80
 
 **Faris Ansari**
 FAST-NUCES, MS-CS
-i257813@isb.nu.edu.pk
+faris.ansari10@gmail.com
 
 ---
 
