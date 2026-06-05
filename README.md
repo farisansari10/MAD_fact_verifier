@@ -36,14 +36,83 @@ SUPPORTED / REFUTED / INSUFFICIENT_EVIDENCE
 
 ## 🤖 Agent Design
 
-| Agent | Model | Tool | Role |
-|-------|-------|------|------|
-| Agent 1 | `openai/gpt-4o-mini` | DuckDuckGo Web Search | Finds latest web evidence |
-| Agent 2 | `x-ai/grok-4-fast` | Wikipedia API | Provides background context |
-| Agent 3 | `google/gemini-2.5-flash` | None | Pure logical reasoning |
-| Judge | `anthropic/claude-sonnet-4-5` | Full debate transcript | Final verdict |
+┌───────────────────────────────────────────────┐
+│               News Claim Input                │
+└───────────────────────────────────────────────┘
+                        │
+                        ▼
+┌───────────────────────────────────────────────┐
+│              Independent Research             │
+├───────────────────────────────────────────────┤
+│ Agent 1 │ GPT-4o-mini │ Live Web Search       │
+│ Agent 2 │ Grok 4 Fast │ Wikipedia Retrieval   │
+│ Agent 3 │ Gemini 2.5  │ Pure Reasoning        │
+└───────────────────────────────────────────────┘
+                        │
+                        ▼
+┌───────────────────────────────────────────────┐
+│               Confidence Gate                 │
+│          (DOWN Framework - Eo et al.)         │
+└───────────────────────────────────────────────┘
+                        │
+        ┌───────────────┴───────────────┐
+        │                               │
+        ▼                               ▼
+ All Agents Agree                 Disagreement /
+ Confidence > 80%                 Low Confidence
+        │                               │
+        │                               ▼
+        │                  ┌─────────────────────┐
+        │                  │   Debate Round 1    │
+        │                  └─────────────────────┘
+        │                               │
+        │                               ▼
+        │                  ┌─────────────────────┐
+        │                  │   Debate Round 2    │
+        │                  └─────────────────────┘
+        │                               │
+        └───────────────┬───────────────┘
+                        ▼
+┌───────────────────────────────────────────────┐
+│                    Judge                      │
+│                Claude Sonnet                  │
+│   Reviews Research + Full Debate Transcript   │
+└───────────────────────────────────────────────┘
+                        │
+                        ▼
+┌───────────────────────────────────────────────┐
+│                Final Verdict                  │
+├───────────────────────────────────────────────┤
+│ ✅ SUPPORTED                                  │
+│ ❌ REFUTED                                    │
+│ ⚠️ INSUFFICIENT_EVIDENCE                      │
+└───────────────────────────────────────────────┘
 
-> All four agents use different model families (OpenAI, xAI, Google, Anthropic) — a deliberate design choice based on Zhou et al. A-HMAD which shows heterogeneous agents produce higher quality debates than identical ones. The judge being from a different family than all debaters reduces adjudication bias as warned by Liang et al.
+Architecture Overview
+1. Independent Research Phase
+  - Three agents investigate the claim using different models and evidence sources.
+  - Diversity reduces single-model bias and improves robustness.
+2. Confidence Gate
+  - Uses the DOWN framework (Eo et al.) to assess agreement and confidence.
+  - If all agents agree with high confidence (>80%), the system bypasses debate.
+3. Multi-Agent Debate
+  - Triggered when agents disagree or confidence is low.
+  - Agents challenge each other's evidence and reasoning for up to two rounds.
+4. Judge Evaluation
+ - Claude Sonnet reviews all research outputs and debate transcripts.
+ - Produces the final fact-checking decision.
+5. Verdict Categories
+ - SUPPORTED — Evidence strongly supports the claim.
+ - REFUTED — Evidence contradicts the claim.
+ - INSUFFICIENT_EVIDENCE — Available evidence is inconclusive.
+
+Key Benefits
+- Multi-source verification
+- Cross-model reasoning
+- Structured disagreement resolution
+- Reduced hallucinations
+- Transparent decision-making process
+- Evidence-backed final verdicts
 
 ---
 
